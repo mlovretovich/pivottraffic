@@ -27,7 +27,7 @@ options:
 
 ## Requirements
 * Python >= 3
-* pandas >= 2.2.0
+* pandas == 2.2.0
 
 
 
