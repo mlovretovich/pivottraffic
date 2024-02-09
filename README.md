@@ -4,7 +4,7 @@
 ## Installation
 `python setup.py install`
 ## To Run
-`
+```
 $ pivottraffic --help
 usage: pivottraffic [-h] baseurl outputfile
 
@@ -17,7 +17,7 @@ positional arguments:
 options:
   -h, --help  show this help message and exit
 
-`
+```
 
 ## Requirements
 * Python >= 3
