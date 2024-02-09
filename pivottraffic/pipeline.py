@@ -3,16 +3,6 @@ import argparse
 import string
 
 
-url = "https://public.wiwdata.com/engineering-challenge/data/a.csv"
-
-
-
-def csv_to_df(url):
-
-	c = pd.read_csv(url)
-
-	return c
-
 ## 	function pivots dataframe to return the path as columns 
 ## 		df: dataframe
 ##
@@ -21,6 +11,7 @@ def path_to_columns(df):
 
 def aggregate_df(df):
 	return df.groupby(['user_id', 'path'],as_index = False)['length'].sum()
+
 
 ## 	function downloads a csv for every letter of the alphabet within a range and aggregates into a single 
 ##	dataframe. 
@@ -72,13 +63,13 @@ def run(baseurl, outputfile):
 ##
 def main():
     parser = argparse.ArgumentParser(
-        description="Pro Thermals: Uses Iges from NX Update to perform thermal analysis on scenery Model")
+        description="Aggregate and pivot traffic data files found at X base url.")
     parser.add_argument("baseurl", type=str, help="Base URL location of files to download ")
     parser.add_argument("outputfile", type=str, help="Output file for formatted csv ")
 
     args = parser.parse_args()
 
-    get_and_transform(baseurl).to_csv(outputfile)
+    run(baseurl, outputfile)
   
 if __name__ == "__main__":
     main()
