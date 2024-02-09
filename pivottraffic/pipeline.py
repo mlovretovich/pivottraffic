@@ -23,16 +23,14 @@ def aggregate_df(df):
 def df_append_and_sum(df, baseurl, charindex, limit):
 
 	## end recursion
-	#
 	if charindex >= limit:
 		return df
 
 
-	file = f'{baseurl}/{list(string.ascii_lowercase)[charindex]}.csv'
-	print(file)
+	file = f'{baseurl}{list(string.ascii_lowercase)[charindex]}.csv'
+	print(f'Processing file: {file}')
 
 	# catching exceptions and moving on to the next file
-	#
 	try:
 		# get data and sum length feilds per user, path
 		c = aggregate_df(pd.read_csv(file))
@@ -64,12 +62,12 @@ def run(baseurl, outputfile):
 def main():
     parser = argparse.ArgumentParser(
         description="Aggregate and pivot traffic data files found at X base url.")
-    parser.add_argument("baseurl", type=str, help="Base URL location of files to download ")
+    parser.add_argument("baseurl", type=str, help="Base URL or directory location of files to download: http://test.com/dir/")
     parser.add_argument("outputfile", type=str, help="Output file for formatted csv ")
 
     args = parser.parse_args()
 
-    run(baseurl, outputfile)
+    run(args.baseurl, args.outputfile)
   
 if __name__ == "__main__":
     main()
